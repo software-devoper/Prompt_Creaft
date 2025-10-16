@@ -25,3 +25,4 @@ python-dotenv
 
 #Machine Learning Utilities
 scikit-learn
+pyperclip
