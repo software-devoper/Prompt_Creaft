@@ -172,6 +172,7 @@ if 'last_response' not in st.session_state:
 apiKey = os.getenv('GOOGLE_API_KEY')
 if not apiKey:
     st.error("❌ OPENROUTER_API_KEY not found in environment variables")
+else:
     try:
         model = ChatGoogleGenerativeAI(
             model='gemini-2.5-flash',
@@ -507,4 +508,5 @@ def main():
     )
 
 if __name__ == "__main__":
+
     main()
