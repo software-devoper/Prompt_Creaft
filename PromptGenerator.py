@@ -1,5 +1,5 @@
-from langchain.prompts import PromptTemplate
-from langchain.chat_models import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
+from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 import os
@@ -169,16 +169,12 @@ if 'last_response' not in st.session_state:
     st.session_state.last_response = None
 
 # Initialize model and components
-apiKey = os.getenv('OPENROUTER_API_KEY')
+apiKey = os.getenv('GOOGLE_API_KEY')
 if not apiKey:
     st.error("❌ OPENROUTER_API_KEY not found in environment variables")
-else:
-    os.environ['OPENAI_API_KEY'] = apiKey
-    os.environ['OPENAI_API_BASE'] = 'https://openrouter.ai/api/v1'
-
     try:
-        model = ChatOpenAI(
-            model='cognitivecomputations/dolphin-mistral-24b-venice-edition:free',
+        model = ChatGoogleGenerativeAI(
+            model='gemini-2.5-flash',
             temperature=0.7
         )
         parser = StrOutputParser()
